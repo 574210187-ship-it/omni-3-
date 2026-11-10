@@ -20,8 +20,8 @@
 `Noto Sans CJK SC Bold` 字体。
 
 ```bash
-git clone https://github.com/574210187-ship-it/omni第三阶段.git
-cd omni第三阶段
+git clone https://github.com/574210187-ship-it/omni-3-.git
+cd omni-3-
 python3.11 -m venv .venv
 . .venv/bin/activate              # Windows: .venv\\Scripts\\activate
 python -m pip install --upgrade pip
