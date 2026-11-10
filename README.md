@@ -1,4 +1,4 @@
-# Omni 第三阶段
+# Omni 第3阶段
 
 这是 Omni Stage2 视频合并与字幕渲染引擎的公开、可复现版本。它基于当前生产引擎
 `omni-stage2-strict/v0.8.3` / `omni-stage2-contract/v4`，但不含任何客户素材、记录、
