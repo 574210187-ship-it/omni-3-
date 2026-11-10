@@ -1,0 +1,7 @@
+{
+  "provider": "feishu_bitable",
+  "app_token": "replace-with-your-app-token",
+  "table_id": "replace-with-your-table-id",
+  "view_name": "replace-with-your-view-name",
+  "view_id": "replace-with-your-view-id"
+}

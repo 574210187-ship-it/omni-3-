@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "benchmark-audio-sync"
+version = "0.8.3"
+description = "Omni Stage2 constrained benchmark-audio video synchronization"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+online = [
+  "mediapipe==0.10.21",
+  "opencv-python-headless==4.11.0.86",
+  "numpy==1.26.4",
+]
+
+[project.scripts]
+benchmark-av-sync = "benchmark_av_sync.cli:main"
+omni-stage1 = "benchmark_av_sync.stage1_runner:main"
+omni-stage2 = "benchmark_av_sync.stage2_runner:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+
+[tool.setuptools.package-data]
+benchmark_av_sync = ["omni_stage2_strict_release.json"]
