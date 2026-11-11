@@ -1,7 +1,7 @@
 # Omni 第3阶段
 
 这是 Omni Stage2 视频合并与字幕渲染引擎的公开、可复现版本。它基于当前生产引擎
-`omni-stage2-strict/v0.8.3` / `omni-stage2-contract/v4`，但不含任何客户素材、记录、
+`omni-stage2-strict/v0.8.4` / `omni-stage2-contract/v4`，但不含任何客户素材、记录、
 附件、访问凭据或业务系统标识。
 
 ## 适用范围
@@ -11,8 +11,10 @@
 - 输出 segments ZIP、完整无字幕 MP4、完整字幕 MP4 和 evidence ZIP；
 - 对输入、运行时、字幕质量、交付哈希和远端完成事件执行 fail-closed 校验。
 
-它不包含任何上传控制器。接入自己的表格、对象存储或媒体系统时，应由外部发布器按
-`result.json` 的 `deliveries` 执行追加上传和 SHA-256 读回。
+它包含完整但通用的 `omni-stage2-batch` 批处理控制器：在接入你自己的受保护来源绑定和
+桥接后，它会扫描全部目标行、选择未完成行、执行、逐件追加上传与 SHA-256 读回、逐行写
+完成事件，并对首轮失败行只重试一次。公开仓库绝不包含任何实际飞书绑定、OAuth 凭据或
+业务媒体。
 
 ## 快速安装与验证
 
@@ -43,6 +45,19 @@ export OMNI_STAGE2_SOURCE_BINDING_JSON="$(cat config/source_binding.example.json
 ```
 
 请只在本机或受控密钥系统中设置真实值，切勿提交 `.env`、媒体、job、运行时回执或交付物。
+
+## 可配置批处理
+
+从 `config/omni_stage2.batch.example.json` 创建只保存在受保护环境的配置，并接入自己的
+来源桥接后运行：
+
+```bash
+omni-stage2-batch --config private-stage2-batch.json --date 2026-11-11 --execute
+```
+
+桥接必须实现 `docs/OMNI_STAGE2_BATCH_BRIDGE_CONTRACT.md` 中的读取、SHA、附件物化、执行
+记录追加、附件原生追加/精确删除与字段回写接口。完整 WorkBuddy 指令见
+`docs/WORKBUDDY_STAGE2_BATCH_PROMPT.md`。
 
 ## 当前规则
 

@@ -26,6 +26,7 @@ CORE_RELEASE_FILES = (
     "stage2_contract.py",
     "stage2_runner.py",
     "stage2_selection.py",
+    "stage2_batch.py",
     "stage2_release.py",
 )
 

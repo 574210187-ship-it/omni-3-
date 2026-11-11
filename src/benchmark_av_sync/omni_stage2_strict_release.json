@@ -1,13 +1,14 @@
 {
   "schema": "omni-stage2-release/v1",
-  "release_id": "omni-stage2-strict/v0.8.3",
+  "release_id": "omni-stage2-strict/v0.8.4",
   "contract": "omni-stage2-contract/v4",
-  "package_version": "0.8.3",
+  "package_version": "0.8.4",
   "files": {
-    "__init__.py": "fb89ad42ad91aeb9084e6a397b570cf4d9490aeadd0ba87c08d5036d6eb79465",
-    "stage2_contract.py": "2e7b8478a92c96cf35070d6e64ac852430d38261c6d7491335adc8fe4f8c9123",
+    "__init__.py": "089959d27d5952b3b143721e5cff4b679d69feaec7e9aa96704452180a505a53",
+    "stage2_contract.py": "81c359e0cdf03ced975a13dfacd0b8a43a47e5fb25c2a119580e5a71c9a686d4",
     "stage2_runner.py": "df0fc84b2c160e69ac7149a837a0cb1673c9f274790a80c337f87d2bfbec9df1",
-    "stage2_selection.py": "6086d3ee994eb7a84a786ab3ef85418eb260fc4ef94c6cb9e4d2c02f3a749176",
-    "stage2_release.py": "744493e15d89225c3c2128dc0de5af2bab6be73d0a850b07d0ff1b7ba1ace640"
+    "stage2_selection.py": "92eff1c7a6ab049c5f3d8c68a48bead137a1f862b636e24ad07a5e58cec3bd3f",
+    "stage2_batch.py": "8ba4b71052602964b6be4b5d2f1ef92caa20e6178f6677f94277368e7fb8b4d8",
+    "stage2_release.py": "ec628916f6fd4b87258fba9aca73f00d6f654cba60a63ce4bad81c7ba7029cec"
   }
 }

@@ -342,6 +342,37 @@ def _replacement_targets(outputs: dict[str, Attachment]) -> list[dict[str, Any]]
     return values
 
 
+def _input_manifest(pairs: Iterable[tuple[str, Attachment, Attachment]]) -> list[dict[str, Any]]:
+    """Return the immutable byte-level inputs needed for either attempt.
+
+    Retry decisions used to omit this inventory.  That left a controller able
+    to identify a legitimate one-time retry but unable to construct the same
+    strictly bound job without re-deriving attachment pairing on its own.
+    Keep selection as the single source of that pairing contract.
+    """
+
+    return [
+        {
+            "pair_id": pair_id,
+            "main_video": {
+                "field_name": video.field_name,
+                "file_token": video.file_token,
+                "name": video.name,
+                "size_bytes": video.size_bytes,
+                "sha256": video.sha256,
+            },
+            "stage1_zip": {
+                "field_name": package.field_name,
+                "file_token": package.file_token,
+                "name": package.name,
+                "size_bytes": package.size_bytes,
+                "sha256": package.sha256,
+            },
+        }
+        for pair_id, video, package in pairs
+    ]
+
+
 def evaluate_row(snapshot: dict[str, Any], *, batch_date: str | None = None) -> dict[str, Any]:
     """Return one of selected_initial/retry_eligible/skip_complete/HOLD states.
 
@@ -588,6 +619,8 @@ def evaluate_row(snapshot: dict[str, Any], *, batch_date: str | None = None) -> 
             "input_fingerprint": fingerprint,
             "strict_release": strict_release,
             "attempt": 2,
+            "pair_ids": [pair_id for pair_id, _, _ in pairs],
+            "input_manifest": _input_manifest(pairs),
             "delivery_policy": {
                 "mode": "replace_rework" if outputs else "append",
                 "replacements": _replacement_targets(outputs),
@@ -604,26 +637,7 @@ def evaluate_row(snapshot: dict[str, Any], *, batch_date: str | None = None) -> 
         "strict_release": strict_release,
         "attempt": 1,
         "pair_ids": [pair_id for pair_id, _, _ in pairs],
-        "input_manifest": [
-            {
-                "pair_id": pair_id,
-                "main_video": {
-                    "field_name": video.field_name,
-                    "file_token": video.file_token,
-                    "name": video.name,
-                    "size_bytes": video.size_bytes,
-                    "sha256": video.sha256,
-                },
-                "stage1_zip": {
-                    "field_name": package.field_name,
-                    "file_token": package.file_token,
-                    "name": package.name,
-                    "size_bytes": package.size_bytes,
-                    "sha256": package.sha256,
-                },
-            }
-            for pair_id, video, package in pairs
-        ],
+        "input_manifest": _input_manifest(pairs),
         "delivery_policy": {
             "mode": "replace_rework" if outputs else "append",
             "replacements": _replacement_targets(outputs),

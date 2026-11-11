@@ -35,6 +35,8 @@ STRICT_DOCS = (
     "OMNI_STAGE2_PRODUCTION_RUNBOOK.md",
     "OMNI_STAGE2_RUNTIME_BOOTSTRAP.md",
     "OMNI_TWO_RUNNERS.md",
+    "OMNI_STAGE2_BATCH_BRIDGE_CONTRACT.md",
+    "WORKBUDDY_STAGE2_BATCH_PROMPT.md",
     "WORKBUDDY_STAGE2_PRODUCTION_PROMPT.md",
 )
 
@@ -69,6 +71,7 @@ def _members(project_root: Path) -> list[Path]:
         project_root / "scripts" / "build_stage2_release.py",
         project_root / "scripts" / "verify_strict_release.py",
         project_root / "src" / "benchmark_av_sync" / "omni_stage2_strict_release.json",
+        project_root / "config" / "omni_stage2.batch.example.json",
     ]
     fixed.extend(project_root / "docs" / name for name in STRICT_DOCS)
     discovered = list((project_root / "src").rglob("*.py")) + list(
@@ -118,7 +121,8 @@ def build_release(
         "production_commit": production_commit,
         "source_archive": {"filename": archive["name"], **{k: v for k, v in archive.items() if k != "name"}},
         "runner": dict(archive),
-        "entrypoint": "omni-stage2 run-row --job <absolute-job.json>",
+        "entrypoint": "omni-stage2-batch --config <private-config.json> --date <Asia/Shanghai-YYYY-MM-DD> --execute",
+        "row_runner_entrypoint": "omni-stage2 run-row --job <absolute-job.json>",
         "runtime": {
             "python": "3.11.x",
             "mediapipe": "0.10.21",

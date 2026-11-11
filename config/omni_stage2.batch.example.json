@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "state_root": "./state",
+  "work_root": "./work",
+  "fields": {
+    "video_number": "视频编号",
+    "main_video": "素材1",
+    "stage1_output": "素材2",
+    "captioned_output": "素材3",
+    "execution": "执行记录",
+    "note": "zed备注"
+  },
+  "source_binding": {
+    "provider": "feishu_bitable",
+    "app_token": "<private-app-token>",
+    "table_id": "<private-table-id>",
+    "view_name": "<private-view-name>",
+    "view_id": "<private-view-id>"
+  },
+  "adapter": {
+    "kind": "command",
+    "command": [
+      "<workbuddy-feishu-bridge-command>"
+    ],
+    "context": {
+      "binding_ref": "private-production-binding"
+    }
+  },
+  "runtime": {
+    "mode": "reused",
+    "python": "/absolute/path/to/python3.11.14",
+    "ffmpeg": "/absolute/path/to/ffmpeg",
+    "ffprobe": "/absolute/path/to/ffprobe",
+    "font_file": "/absolute/path/to/NotoSansCJKsc-Bold.ttc"
+  },
+  "batch_authorization": "<the user's explicit one-batch authorization>",
+  "review_authorization": {
+    "statement": "<the user's explicit authorization for the audited automated review path>",
+    "authorized_at": "<ISO8601 timestamp>"
+  }
+}

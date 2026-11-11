@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "benchmark-audio-sync"
-version = "0.8.3"
+version = "0.8.4"
 description = "Omni Stage2 constrained benchmark-audio video synchronization"
 requires-python = ">=3.11"
 dependencies = []
@@ -20,6 +20,7 @@ online = [
 benchmark-av-sync = "benchmark_av_sync.cli:main"
 omni-stage1 = "benchmark_av_sync.stage1_runner:main"
 omni-stage2 = "benchmark_av_sync.stage2_runner:main"
+omni-stage2-batch = "benchmark_av_sync.stage2_batch:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

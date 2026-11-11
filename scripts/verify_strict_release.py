@@ -68,6 +68,15 @@ def main() -> None:
         and "strict_release=strict_release" in selection,
         "selector is not bound to the installed release",
     )
+    batch_controller = (SRC / "benchmark_av_sync" / "stage2_batch.py").read_text(
+        encoding="utf-8"
+    )
+    require(
+        "stage2_started" in batch_controller
+        and "build_stage2_complete_event" in batch_controller
+        and "retry_eligible_after_first_pass" in batch_controller,
+        "batch controller omits lifecycle, completion, or single-retry control",
+    )
 
     for name in (
         "OMNI_STAGE2_PRODUCTION_RUNBOOK.md",
@@ -132,7 +141,7 @@ def main() -> None:
         "BROWSER_CHATGPT_STAGE2_PROMPT.md",
         "OMNI_STAGE2_RUNTIME_CONTINUE_PROMPT.md",
         "OMNI_TWO_RUNNERS.md",
-        "WORKBUDDY_STAGE2_PRODUCTION_PROMPT.md",
+        "WORKBUDDY_STAGE2_BATCH_PROMPT.md",
     ):
         text = (ROOT / "docs" / name).read_text(encoding="utf-8")
         require(STRICT_RELEASE_ID in text, f"{name} omits strict release id")

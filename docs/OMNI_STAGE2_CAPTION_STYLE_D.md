@@ -1,6 +1,6 @@
 # Omni Stage2 字幕样式 D（公开版）
 
-样式 D 属于 `omni-stage2-strict/v0.8.3` / `omni-stage2-contract/v4`。每个 job 必须携带
+样式 D 属于 `omni-stage2-strict/v0.8.4` / `omni-stage2-contract/v4`。每个 job 必须携带
 由当前包计算的 `strict_release` 与不可变的 `input_fingerprint`。
 
 - 字体：`Noto Sans CJK SC Bold`；必须由 libass 从工作区真实字体文件解析。

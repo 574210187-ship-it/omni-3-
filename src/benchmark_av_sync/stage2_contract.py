@@ -20,8 +20,8 @@ SHA256_PATTERN = re.compile(r"^[0-9a-f]{64}$")
 CONTRACT_VERSION = "omni-stage2-contract/v4"
 RUNTIME_RECEIPT_SCHEMA = "omni-stage2-runtime-receipt/v2"
 STRICT_RELEASE_SCHEMA = "omni-stage2-release/v1"
-STRICT_RELEASE_ID = "omni-stage2-strict/v0.8.3"
-STRICT_PACKAGE_VERSION = "0.8.3"
+STRICT_RELEASE_ID = "omni-stage2-strict/v0.8.4"
+STRICT_PACKAGE_VERSION = "0.8.4"
 
 # These are the values stated by the production runbook and caption style
 # contract.  They are deliberately single-sourced here so the runner cannot

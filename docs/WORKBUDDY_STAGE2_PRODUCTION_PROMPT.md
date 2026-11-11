@@ -1,11 +1,14 @@
-# Omni Stage2 调度提示（公开版）
+# 已废止：旧 WorkBuddy 单行派发提示
 
-当前发布为 `omni-stage2-strict/v0.8.3` / `omni-stage2-contract/v4`。
+本文件曾要求控制页逐行创建普通聊天页，再把单行任务交给新标签。这种方式没有一个真正的
+“扫描未完成行 → 执行 → 上传 → 逐行回写 → 回读 → 重试”控制器，容易留下已渲染但未写回、
+已上传但未完成、或旧页面重复处理的断层。
 
-调度器只派发一个已选定行：`record_id`、`video_number`、`dispatch_key`、`attempt`、
-`input_fingerprint`、输入清单和当前安装包生成的 `strict_release`。业务系统地址、令牌、
-附件 ID 与真实媒体必须通过受控配置传递，不能硬编码在本仓库。
+从 `omni-stage2-strict/v0.8.4` 起，唯一当前的 WorkBuddy 生产入口是：
 
-执行器需先读回 `stage2_started`，再运行严格 Runner；若速度例外触发，则附上与
-record/dispatch/attempt 绑定的 `review_authorization`。只有四件交付物 SHA-256 读回、
-`review_receipt` 完成且 `stage2_complete` 读回成功后，调度器才可将任务标为完成。
+- `docs/WORKBUDDY_STAGE2_BATCH_PROMPT.md`：粘贴到全新 WorkBuddy 窗口的完整批处理指令；
+- `docs/OMNI_STAGE2_BATCH_BRIDGE_CONTRACT.md`：飞书 MCP 与批处理控制器的精确桥接合同；
+- `omni-stage2-batch --config <private-config.json> --date <Asia/Shanghai YYYY-MM-DD> --execute`：
+  程序化控制入口。
+
+不得把本旧文件当作生产调度规则，也不得再创建“每行一个普通聊天页”来替代批处理控制器。

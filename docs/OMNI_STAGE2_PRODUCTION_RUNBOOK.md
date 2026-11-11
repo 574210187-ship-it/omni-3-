@@ -1,6 +1,6 @@
 # Omni Stage2 生产运行手册（公开版）
 
-当前锁：`omni-stage2-strict/v0.8.3` / `omni-stage2-contract/v4`。开始前根据当前安装包生成
+当前锁：`omni-stage2-strict/v0.8.4` / `omni-stage2-contract/v4`。开始前根据当前安装包生成
 `strict_release`，并使它与 job、结果、evidence 和远端事件保持一致。
 
 字幕必须使用由 libass 实际解析的 `Noto Sans CJK SC Bold`；字幕外上方画面门禁固定为
@@ -11,12 +11,12 @@ SSIM ≥ 0.995、PSNR ≥ 45 dB。
 写入并读回与本行绑定的 `stage2_started`，至少包含：
 
 ```json
-{"v":4,"phase":"stage2_started","record_id":"<record_id>","video_number":"<video_number>","dispatch_key":"<dispatch_key>","input_fingerprint":"<sha256>","strict_release":{"release_id":"omni-stage2-strict/v0.8.3","contract":"omni-stage2-contract/v4","package_version":"0.8.3","manifest_sha256":"<sha256>"},"attempt":1,"readback_verified":true}
+{"v":4,"phase":"stage2_started","record_id":"<record_id>","video_number":"<video_number>","dispatch_key":"<dispatch_key>","input_fingerprint":"<sha256>","strict_release":{"release_id":"omni-stage2-strict/v0.8.4","contract":"omni-stage2-contract/v4","package_version":"0.8.4","manifest_sha256":"<sha256>"},"attempt":1,"readback_verified":true}
 ```
 
 ## 运行与复核
 
-只运行 `omni-stage2 run-row --job <absolute-job.json>`。初次运行的默认速度上限为 1.25x；
+批量生产只运行 `omni-stage2-batch --config <private-config.json> --date <Asia/Shanghai-YYYY-MM-DD> --execute`，由它调用 `omni-stage2 run-row --job <absolute-job.json>`。初次运行的默认速度上限为 1.25x；
 仅在失败唯一原因是局部速度且不超过授权上限时才允许一次例外。例外结果保持
 `review_required=true`，并须有完成的 `review_receipt`：`manual_full_playback`，或与
 record、dispatch、attempt 绑定的 `authorized_automated_audit`。自动审计必须保存 SHA、完整解码、
