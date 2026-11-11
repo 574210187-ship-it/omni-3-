@@ -1,6 +1,6 @@
 # Omni 批处理与行级执行合同（公开版）
 
-唯一严格发布为 `omni-stage2-strict/v0.8.4`，合同为 `omni-stage2-contract/v4`。
+唯一严格发布为 `omni-stage2-strict/v0.8.5`，合同为 `omni-stage2-contract/v4`。
 公开版不含任何客户数据、飞书绑定或凭据，但包含完整的可配置批处理控制器。
 
 ## 入口

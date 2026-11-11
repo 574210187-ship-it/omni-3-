@@ -4,7 +4,7 @@
 “扫描未完成行 → 执行 → 上传 → 逐行回写 → 回读 → 重试”控制器，容易留下已渲染但未写回、
 已上传但未完成、或旧页面重复处理的断层。
 
-从 `omni-stage2-strict/v0.8.4` 起，唯一当前的 WorkBuddy 生产入口是：
+从 `omni-stage2-strict/v0.8.5` 起，唯一当前的 WorkBuddy 生产入口是：
 
 - `docs/WORKBUDDY_STAGE2_BATCH_PROMPT.md`：粘贴到全新 WorkBuddy 窗口的完整批处理指令；
 - `docs/OMNI_STAGE2_BATCH_BRIDGE_CONTRACT.md`：飞书 MCP 与批处理控制器的精确桥接合同；

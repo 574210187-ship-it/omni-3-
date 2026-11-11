@@ -1,6 +1,6 @@
 # Omni 第三阶段 执行器说明（公开版）
 
-当前发布为 `omni-stage2-strict/v0.8.4` / `omni-stage2-contract/v4`。
+当前发布为 `omni-stage2-strict/v0.8.5` / `omni-stage2-contract/v4`。
 
 执行器一次只处理一个明确的 `record_id`、`video_number`、`input_fingerprint` 与
 `strict_release` 组合。先以当前安装包生成 `strict_release`，写入并读回

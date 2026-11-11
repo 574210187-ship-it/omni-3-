@@ -24,7 +24,6 @@ from typing import Any, Iterable
 from .workspace import atomic_write_json, read_json
 from .stage2_contract import (
     DELIVERY_SPECS as CONTRACT_DELIVERY_SPECS,
-    SOURCE_BINDING,
     validate_source_binding,
     validate_stage2_complete_event,
 )
@@ -403,7 +402,6 @@ def evaluate_row(snapshot: dict[str, Any], *, batch_date: str | None = None) -> 
             "status": "hold_source_binding_mismatch",
             "record_id": record_id,
             "video_number": video_number,
-            "source_binding_expected": dict(SOURCE_BINDING),
             "reason": source_reason,
             "zed_note_used": False,
         }

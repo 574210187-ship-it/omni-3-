@@ -1,6 +1,6 @@
 # Omni 第三阶段 生产运行手册（公开版）
 
-当前锁：`omni-stage2-strict/v0.8.4` / `omni-stage2-contract/v4`。开始前根据当前安装包生成
+当前锁：`omni-stage2-strict/v0.8.5` / `omni-stage2-contract/v4`。开始前根据当前安装包生成
 `strict_release`，并使它与 job、结果、evidence 和远端事件保持一致。
 
 字幕必须使用由 libass 实际解析的 `Noto Sans CJK SC Bold`；字幕外上方画面门禁固定为
@@ -11,7 +11,7 @@ SSIM ≥ 0.995、PSNR ≥ 45 dB。
 写入并读回与本行绑定的 `stage2_started`，至少包含：
 
 ```json
-{"v":4,"phase":"stage2_started","record_id":"<record_id>","video_number":"<video_number>","dispatch_key":"<dispatch_key>","input_fingerprint":"<sha256>","strict_release":{"release_id":"omni-stage2-strict/v0.8.4","contract":"omni-stage2-contract/v4","package_version":"0.8.4","manifest_sha256":"<sha256>"},"attempt":1,"readback_verified":true}
+{"v":4,"phase":"stage2_started","record_id":"<record_id>","video_number":"<video_number>","dispatch_key":"<dispatch_key>","input_fingerprint":"<sha256>","strict_release":{"release_id":"omni-stage2-strict/v0.8.5","contract":"omni-stage2-contract/v4","package_version":"0.8.5","manifest_sha256":"<sha256>"},"attempt":1,"readback_verified":true}
 ```
 
 ## 运行与复核

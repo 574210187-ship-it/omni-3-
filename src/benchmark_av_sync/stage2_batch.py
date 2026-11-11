@@ -478,6 +478,14 @@ def _snapshot_record(
     }
 
 
+def _snapshot_for_disk(snapshot: dict[str, Any]) -> dict[str, Any]:
+    """Return audit evidence without persisting a protected binding."""
+
+    redacted = dict(snapshot)
+    redacted["source_binding"] = {"redacted": True}
+    return redacted
+
+
 def _event_matches(event: dict[str, Any], expected: dict[str, Any]) -> bool:
     return event.get("event_id") == expected["event_id"]
 
@@ -1169,7 +1177,7 @@ def _plan_row(
     snapshot = _snapshot_record(adapter, config=config, record_id=record_id)
     decision = evaluate_row(snapshot, batch_date=batch_date)
     row_root = state_root / "snapshots" / batch_date / _safe_record_component(record_id)
-    atomic_write_json(row_root / "snapshot.json", snapshot)
+    atomic_write_json(row_root / "snapshot.json", _snapshot_for_disk(snapshot))
     atomic_write_json(row_root / "decision.json", decision)
     return snapshot, decision
 

@@ -43,6 +43,8 @@ class StrictSelectionTests(unittest.TestCase):
         snapshot["source_binding"]["view_name"] = "聊天"
         result = evaluate_row(snapshot, batch_date="2026-11-02")
         self.assertEqual(result["status"], "hold_source_binding_mismatch")
+        self.assertNotIn("source_binding_expected", result)
+        self.assertNotIn(str(SOURCE_BINDING["view_name"]), result["reason"])
 
     def test_ineligible_row_is_marked_and_can_continue(self):
         snapshot = self._snapshot()

@@ -1,7 +1,7 @@
 # Omni 第三阶段
 
 这是 Omni 第三阶段视频合并与字幕渲染引擎的公开、可复现版本。它基于当前生产引擎
-`omni-stage2-strict/v0.8.4` / `omni-stage2-contract/v4`，但不含任何客户素材、记录、
+`omni-stage2-strict/v0.8.5` / `omni-stage2-contract/v4`，但不含任何客户素材、记录、
 附件、访问凭据或业务系统标识。
 
 用户可见名称统一为“Omni 第三阶段”。为兼容既有自动化和历史回执，内部技术标识仍使用

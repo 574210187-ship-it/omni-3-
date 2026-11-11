@@ -8,6 +8,7 @@ from typing import Any
 from benchmark_av_sync.stage2_batch import (
     Stage2BatchConfig,
     Stage2BatchFields,
+    _snapshot_for_disk,
     run_batch,
 )
 from benchmark_av_sync.stage2_contract import (
@@ -218,6 +219,19 @@ def _success_runner(decisions: dict[Path, dict[str, Any]]):
 
 
 class Stage2BatchTests(unittest.TestCase):
+    def test_persisted_snapshot_redacts_source_binding(self):
+        snapshot = {
+            "record_id": "rec-batch-001",
+            "source_binding": {
+                "app_token": "private-app-token",
+                "table_id": "private-table-id",
+                "view_id": "private-view-id",
+            },
+        }
+        stored = _snapshot_for_disk(snapshot)
+        self.assertEqual(stored["source_binding"], {"redacted": True})
+        self.assertEqual(snapshot["source_binding"]["app_token"], "private-app-token")
+
     def test_execute_reads_selects_uploads_readbacks_and_completes_row(self):
         from unittest.mock import patch
 

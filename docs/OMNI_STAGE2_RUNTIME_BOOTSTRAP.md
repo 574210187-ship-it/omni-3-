@@ -1,6 +1,6 @@
 # Omni 第三阶段 运行时 Bootstrap（公开版）
 
-目标发布：`omni-stage2-strict/v0.8.4` / `omni-stage2-contract/v4`。使用 Python 3.11.14，
+目标发布：`omni-stage2-strict/v0.8.5` / `omni-stage2-contract/v4`。使用 Python 3.11.14，
 安装 MediaPipe 0.10.21、OpenCV 4.11.0、NumPy 1.26.4，并确认 FFmpeg 带 `minterpolate` 与
 `ass`。每个 job 均携带 `input_fingerprint` 和由当前包生成的 `strict_release`。
 

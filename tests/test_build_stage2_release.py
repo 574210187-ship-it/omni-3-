@@ -29,7 +29,7 @@ class StrictReleaseBuilderTests(unittest.TestCase):
             )
             archive = result["archive"]
             manifest = json.loads(result["manifest"].read_text(encoding="utf-8"))
-            self.assertEqual(manifest["release_id"], "omni-stage2-strict/v0.8.4")
+            self.assertEqual(manifest["release_id"], "omni-stage2-strict/v0.8.5")
             self.assertEqual(manifest["contract"], "omni-stage2-contract/v4")
             self.assertEqual(manifest["source_archive"]["sha256"], builder._sha256(archive))
             self.assertEqual(manifest["runner"]["sha256"], manifest["source_archive"]["sha256"])
@@ -47,7 +47,7 @@ class StrictReleaseBuilderTests(unittest.TestCase):
                 self.assertNotIn("docs/OMNI_STAGE2_SYNC_V077.md", names)
                 self.assertNotIn("docs/OMNI_STAGE2_SYNC_V078_RELAXED_HOLD.md", names)
                 two_runners = package.read("docs/OMNI_TWO_RUNNERS.md").decode("utf-8")
-                self.assertIn("omni-stage2-strict/v0.8.4", two_runners)
+                self.assertIn("omni-stage2-strict/v0.8.5", two_runners)
                 self.assertNotIn("版本：0.6.0", two_runners)
 
 

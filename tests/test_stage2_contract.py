@@ -29,6 +29,7 @@ class Stage2ContractTests(unittest.TestCase):
         ok, reason = validate_source_binding(wrong)
         self.assertFalse(ok)
         self.assertIn("view_name", reason)
+        self.assertNotIn(str(SOURCE_BINDING["view_name"]), reason)
 
     def test_idempotency_key_has_no_retry_suffix(self):
         digest = _sha("artifact")

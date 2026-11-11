@@ -20,8 +20,8 @@ SHA256_PATTERN = re.compile(r"^[0-9a-f]{64}$")
 CONTRACT_VERSION = "omni-stage2-contract/v4"
 RUNTIME_RECEIPT_SCHEMA = "omni-stage2-runtime-receipt/v2"
 STRICT_RELEASE_SCHEMA = "omni-stage2-release/v1"
-STRICT_RELEASE_ID = "omni-stage2-strict/v0.8.4"
-STRICT_PACKAGE_VERSION = "0.8.4"
+STRICT_RELEASE_ID = "omni-stage2-strict/v0.8.5"
+STRICT_PACKAGE_VERSION = "0.8.5"
 
 # These are the values stated by the production runbook and caption style
 # contract.  They are deliberately single-sourced here so the runner cannot
@@ -162,7 +162,10 @@ def validate_source_binding(value: Any) -> tuple[bool, str | None]:
         return False, "source_binding is missing"
     for key, expected in SOURCE_BINDING.items():
         if value.get(key) != expected:
-            return False, f"source_binding.{key} must equal {expected!r}"
+            # The expected value may be a protected Bitable identifier. A
+            # mismatch must remain diagnosable without placing that value in
+            # a selector result, receipt, log, or chat response.
+            return False, f"source_binding.{key} does not match configured binding"
     return True, None
 
 

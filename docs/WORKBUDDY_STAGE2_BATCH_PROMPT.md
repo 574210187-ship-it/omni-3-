@@ -11,7 +11,7 @@
 
 一、先恢复正确的程序和绑定
 1. 到本账号资料空间中读取最新私有 Omni 第三阶段生产源码、`docs/WORKBUDDY_STAGE2_BATCH_PROMPT.md`、`docs/OMNI_STAGE2_BATCH_BRIDGE_CONTRACT.md`、`config/omni_stage2.batch.example.json` 和当前严格发布文件；不要把公开 GitHub 仓库当作生产绑定来源。公开仓库只用于代码审阅/测试。
-2. 使用当前源码创建隔离工作目录和 Python 3.11.14 环境，安装当前包；运行 `PYTHONPATH=src python scripts/verify_strict_release.py`。唯一可执行发布是 `omni-stage2-strict/v0.8.4` / `omni-stage2-contract/v4`；只有通过后才能读取业务附件。不得使用旧 v0.8.3 或更早包，也不得将历史提示词、历史离线包规则或旧普通聊天页流程带回生产。
+2. 使用当前源码创建隔离工作目录和 Python 3.11.14 环境，安装当前包；运行 `PYTHONPATH=src python scripts/verify_strict_release.py`。唯一可执行发布是 `omni-stage2-strict/v0.8.5` / `omni-stage2-contract/v4`；只有通过后才能读取业务附件。不得使用旧 v0.8.3 或更早包，也不得将历史提示词、历史离线包规则或旧普通聊天页流程带回生产。
 3. 由当前私有安装包读取 `benchmark_av_sync.stage2_contract.SOURCE_BINDING`，在受保护的本窗口配置中作为 `source_binding` 使用。不得在聊天、公开文件、GitHub、批次摘要或日志中打印 app_token、table_id、view_id 或 token。
 4. 调用已连接飞书 MCP 的 `bitable_connection_status`，必须实际得到 `connected=true`。再通过 `bitable_list_views` 核对私有绑定中的真实视图，随后用该真实 view_id 分页读取全部记录；不能只处理当前屏幕可见的几行。
 5. 核对字段存在且是本流程字段：`视频编号`、`素材1`、`素材2`、`素材3`、`执行记录`、`zed备注`（若实际大小写不同，以正式绑定和字段读回为准）。任一绑定、字段或权限不符时，停止为 HOLD，报告唯一真实原因；不要猜测另一张表或另一视图。

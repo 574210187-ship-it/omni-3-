@@ -1,6 +1,6 @@
 # Omni 第三阶段 运行时接续（公开版）
 
-唯一生产合同为 `omni-stage2-strict/v0.8.4` / `omni-stage2-contract/v4`。所有 job 必须包含
+唯一生产合同为 `omni-stage2-strict/v0.8.5` / `omni-stage2-contract/v4`。所有 job 必须包含
 `input_fingerprint` 与当前 `strict_release`。
 
 可接受的运行时来源为：已验证复用、经清单验证的恢复，或 `mode=reconstructed` 的受控重建。
