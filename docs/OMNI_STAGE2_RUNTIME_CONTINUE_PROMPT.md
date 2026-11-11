@@ -1,4 +1,4 @@
-# Omni Stage2 运行时接续（公开版）
+# Omni 第三阶段 运行时接续（公开版）
 
 唯一生产合同为 `omni-stage2-strict/v0.8.4` / `omni-stage2-contract/v4`。所有 job 必须包含
 `input_fingerprint` 与当前 `strict_release`。

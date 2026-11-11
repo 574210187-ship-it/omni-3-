@@ -1,4 +1,4 @@
-# Omni Stage2 生产运行手册（公开版）
+# Omni 第三阶段 生产运行手册（公开版）
 
 当前锁：`omni-stage2-strict/v0.8.4` / `omni-stage2-contract/v4`。开始前根据当前安装包生成
 `strict_release`，并使它与 job、结果、evidence 和远端事件保持一致。

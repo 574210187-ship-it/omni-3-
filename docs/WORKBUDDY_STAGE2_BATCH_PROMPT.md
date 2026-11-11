@@ -1,16 +1,16 @@
-# 新 WorkBuddy 窗口：Omni 第二阶段全表批处理指令
+# 新 WorkBuddy 窗口：Omni 第三阶段全表批处理指令
 
 将下面整个代码块原样粘贴到**一个全新的 WorkBuddy 窗口**。它替代旧的“只派发单行普通
 聊天页”的做法：当前窗口自己完成选行、执行、上传、逐行写回和远端读回，不要求用户逐行
 选单元格、上传附件、复制 token 或确认每一个文件。
 
 ```text
-你现在是 Omni 第二阶段的唯一批处理控制器。我要你在本窗口自动完成：从已连接飞书多维表的正式视图读取全部行 → 找出尚未完成且符合 Stage2 严格条件的行 → 串行执行每一行 → 原生追加四件交付 → 逐件远端读回 → 写入该行的完成事件和备注 → 首轮结束后只对首轮失败行再试一次。不要把任务拆回给我，不要让我点选单元格、上传文件、提供 Cookie 或复制 token。
+你现在是 Omni 第三阶段的唯一批处理控制器。我要你在本窗口自动完成：从已连接飞书多维表的正式视图读取全部行 → 找出尚未完成且符合第三阶段严格条件的行 → 串行执行每一行 → 原生追加四件交付 → 逐件远端读回 → 写入该行的完成事件和备注 → 首轮结束后只对首轮失败行再试一次。不要把任务拆回给我，不要让我点选单元格、上传文件、提供 Cookie 或复制 token。
 
 我在此对本次批处理作出明确授权：对于本窗口从正式绑定和严格选择器生成的批次计划中的每一行，只要该行输入、严格发布锁、运行时、媒体校验和远端读回都通过，你可以：追加执行记录、原生追加对应交付文件、在合规返工中按精确 file_token 删除被新件替代的旧交付、以及更新该行 ZED备注。此授权不允许改表结构、创建/删除记录、覆盖整格附件、改动其他表/视图、删除 Stage1 输入、发布 GitHub 或暴露凭据。
 
 一、先恢复正确的程序和绑定
-1. 到本账号资料空间中读取最新私有 Omni Stage2 生产源码、`docs/WORKBUDDY_STAGE2_BATCH_PROMPT.md`、`docs/OMNI_STAGE2_BATCH_BRIDGE_CONTRACT.md`、`config/omni_stage2.batch.example.json` 和当前严格发布文件；不要把公开 GitHub 仓库当作生产绑定来源。公开仓库只用于代码审阅/测试。
+1. 到本账号资料空间中读取最新私有 Omni 第三阶段生产源码、`docs/WORKBUDDY_STAGE2_BATCH_PROMPT.md`、`docs/OMNI_STAGE2_BATCH_BRIDGE_CONTRACT.md`、`config/omni_stage2.batch.example.json` 和当前严格发布文件；不要把公开 GitHub 仓库当作生产绑定来源。公开仓库只用于代码审阅/测试。
 2. 使用当前源码创建隔离工作目录和 Python 3.11.14 环境，安装当前包；运行 `PYTHONPATH=src python scripts/verify_strict_release.py`。唯一可执行发布是 `omni-stage2-strict/v0.8.4` / `omni-stage2-contract/v4`；只有通过后才能读取业务附件。不得使用旧 v0.8.3 或更早包，也不得将历史提示词、历史离线包规则或旧普通聊天页流程带回生产。
 3. 由当前私有安装包读取 `benchmark_av_sync.stage2_contract.SOURCE_BINDING`，在受保护的本窗口配置中作为 `source_binding` 使用。不得在聊天、公开文件、GitHub、批次摘要或日志中打印 app_token、table_id、view_id 或 token。
 4. 调用已连接飞书 MCP 的 `bitable_connection_status`，必须实际得到 `connected=true`。再通过 `bitable_list_views` 核对私有绑定中的真实视图，随后用该真实 view_id 分页读取全部记录；不能只处理当前屏幕可见的几行。

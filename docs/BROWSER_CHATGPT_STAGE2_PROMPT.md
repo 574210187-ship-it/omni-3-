@@ -1,4 +1,4 @@
-# Omni Stage2 执行器说明（公开版）
+# Omni 第三阶段 执行器说明（公开版）
 
 当前发布为 `omni-stage2-strict/v0.8.4` / `omni-stage2-contract/v4`。
 
